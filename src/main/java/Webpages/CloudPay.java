@@ -2,6 +2,7 @@ package Webpages;
 
 
 import Utility.Util;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,6 +30,21 @@ public class CloudPay extends BasePages{
     @FindBy( xpath = "(//i[@class='a-icon a-icon-checkbox'])[12]")
     WebElement refineSearch;
 
+    @FindBy ( xpath = "//span[contains(text(),'2020 Newest Dell Inspiron 15 3000 PC Laptop')]")
+    WebElement dellNewest;
+
+    @FindBy ( xpath =  "(//span[@class='a-price-whole'])[1]")
+    WebElement laptopPrice;
+
+    @FindBy(xpath = "//input[@id='add-to-cart-button-ubb']")
+    WebElement addToCart;
+
+    @FindBy(xpath = "//span[contains(text(),'KOORUI 24 Inch Computer Monitor')]")
+    WebElement monitorSelect;
+
+    @FindBy(xpath = "//input[@id='add-to-cart-button']")
+    WebElement monitorAddToCart;
+
     public void goToHomePage(){
         driver.get(baseUrl);
     }
@@ -38,15 +54,43 @@ public class CloudPay extends BasePages{
     }
     public void searchBox(){
         Util.sendKey(searchBox,laptopType);
-    }
-
-    public void setClickGo(){
         Util.click(clickGo);
     }
 
+    public void searchBoxMonitor(){
+
+        Util.sendKey(searchBox,monitorType);
+        Util.click(clickGo);
+    }
     public void setRefineSearch(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,250)", "");
+        Util.waitTime(2);
         Util.click(refineSearch);
 
+    }
+
+    public void selectDellNewest(){
+        Util.waitTime(3);
+        Util.click(dellNewest);
+    }
+
+    public String dellPrice(){
+        String price = Util.getText(laptopPrice);
+        return price;
+    }
+
+    public void addToTheCart(){
+        Util.waitTime(2);
+        Util.click(addToCart);
+
+    }
+
+    public void setMonitorSelect(){
+        Util.waitTime(2);
+        Util.click(monitorSelect);
+        Util.waitTime(2);
+        Util.click(monitorAddToCart);
     }
 
 
