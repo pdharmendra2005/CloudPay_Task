@@ -2,11 +2,14 @@ package Webpages;
 
 
 import Utility.Util;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class CloudPay extends BasePages{
 
@@ -25,7 +28,7 @@ public class CloudPay extends BasePages{
 //    WebElement getSearchBox;
 
     @FindBy( xpath = "//input[@value='Go']")
-    WebElement clickGo;
+    WebElement clickSearch;
 
     @FindBy( xpath = "(//i[@class='a-icon a-icon-checkbox'])[12]")
     WebElement refineSearch;
@@ -46,27 +49,39 @@ public class CloudPay extends BasePages{
     WebElement monitorAddToCart;
 
     public void goToHomePage(){
+
         driver.get(baseUrl);
     }
 
     public boolean isUserOnHomePage() {
+
         return Util.isDisplayed(browseContent);
     }
     public void searchBox(){
         Util.sendKey(searchBox,laptopType);
-        Util.click(clickGo);
+        Util.click(clickSearch);
     }
 
     public void searchBoxMonitor(){
 
         Util.sendKey(searchBox,monitorType);
-        Util.click(clickGo);
+        Util.click(clickSearch);
     }
-    public void setRefineSearch(){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,250)", "");
-        Util.waitTime(2);
-        Util.click(refineSearch);
+    public void setRefineSearch(String choiceRam){
+
+        //span[contains(text(),'4 GB')]
+
+        List<WebElement> refSearch = driver.findElements(By.cssSelector(".a-icon a-icon-checkbox"));
+        System.out.println(choiceRam);
+      //  System.out.println(refSearch.);
+        for ( WebElement searchOption:refSearch) {
+
+
+         //   if(searchOption.equals(By.linkText("4 GB"))){
+            if(searchOption.equals(By.xpath("//span[contains(text(),'4 GB')]"))){
+                searchOption.click();
+            }
+        }
 
     }
 

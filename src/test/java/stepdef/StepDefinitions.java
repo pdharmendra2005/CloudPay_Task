@@ -26,10 +26,10 @@ public class StepDefinitions {
         cloudPay.searchBox();
 
     }
-    @When("I click 4GB to refine my search")
-    public void i_click_4GB_to_refine_my_search() {
-        cloudPay.setRefineSearch();
+    @And("I click {string} to refine my search")
+    public void iClickToRefineMySearch(String choiceRam) {
 
+        cloudPay.setRefineSearch(choiceRam);
     }
     @When("I pick 2020 Newest Dell Inspiron 15 3000 PC Laptop desired laptop")
     public void i_pick_desired_laptop() {
@@ -53,8 +53,6 @@ public class StepDefinitions {
         cloudPay.searchBoxMonitor();
         cloudPay.setMonitorSelect();
     }
-
-
 
 
 
