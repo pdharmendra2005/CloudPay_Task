@@ -2,14 +2,18 @@ package Webpages;
 
 
 import Utility.Util;
+import okio.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CloudPay extends BasePages{
 
@@ -71,23 +75,35 @@ public class CloudPay extends BasePages{
 
         //span[contains(text(),'4 GB')]
 
-        List<WebElement> refSearch = driver.findElements(By.cssSelector(".a-icon a-icon-checkbox"));
+        List<WebElement> refSearch = driver.findElements(By.cssSelector(".a-icon.a-icon-checkbox"));
         System.out.println(choiceRam);
-      //  System.out.println(refSearch.);
+        System.out.println("No of checkbox "+ Integer.toString(refSearch.size()));
         for ( WebElement searchOption:refSearch) {
 
+           // System.out.println("No of checkbox______________ "+ Integer.toString(refSearch.size()));
 
-         //   if(searchOption.equals(By.linkText("4 GB"))){
-            if(searchOption.equals(By.xpath("//span[contains(text(),'4 GB')]"))){
-                searchOption.click();
-            }
+         //     if(searchOption.equals(driver.findElement(By.linkText("4 GB"))))
+         //   if(searchOption.equals(By.xpath("//span[contains(text(),'4 GB')]"))){
+//            if(searchOption.equals(By.xpath("//li[@id='p_n_feature_thirty-three_browse-bin/23720420011']//i[@class='a-icon a-icon-checkbox']")))
+//            {
+//                searchOption.click();
+//            }
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("4 GB")));
+             driver.findElement(By.linkText("4 GB")).click();
         }
 
     }
 
     public void selectDellNewest(){
-        Util.waitTime(3);
-        Util.click(dellNewest);
+
+        String [] myDell = {    };
+
+        List <WebElement> myDellLaptop = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
+
+        System.out.println("No of items"+ Integer.toString(myDellLaptop.size()));
+
+
     }
 
     public String dellPrice(){
