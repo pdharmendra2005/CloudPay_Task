@@ -47,6 +47,9 @@ public class CloudPay extends BasePages{
     @FindBy(xpath = "//input[@id='add-to-cart-button-ubb']")
     WebElement addToCart;
 
+//    @FindBy(css = "input#add-to-cart-button")
+//    WebElement addToCart; MIN
+
     @FindBy(xpath = "//span[contains(text(),'KOORUI 24 Inch Computer Monitor')]")
     WebElement monitorSelect;
 
@@ -86,18 +89,27 @@ public class CloudPay extends BasePages{
 
     public void selectDellNewest(String myDellLaptop) {
 
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,1000)");
+//
+//        System.out.println("2020 newest"+ driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed());
+//
+//        WebDriverWait wait = new WebDriverWait(driver,10);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(myDellLaptop)));
+//        driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed();
+//        js.executeScript("window.scrollBy(0,1000)");
+//        driver.findElement(By.partialLinkText(myDellLaptop)).click();
+
+        System.out.println("link"+ driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed());
         JavascriptExecutor js = (JavascriptExecutor) driver;
+
         js.executeScript("window.scrollBy(0,1000)");
 
-        System.out.println("2020 newest"+ driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed());
-
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(myDellLaptop)));
-        driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed();
-        js.executeScript("window.scrollBy(0,1000)");
         driver.findElement(By.partialLinkText(myDellLaptop)).click();
 
     }
+
+
 
 
 
