@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +26,7 @@ public class CloudPay extends BasePages{
     @FindBy( css = "#twotabsearchtextbox")
     WebElement searchBox;
 
-    @FindBy ( css = "#nav-logo-sprites")
+    @FindBy ( xpath = "//a[@id='nav-logo-sprites']")
     WebElement browseContent;
 
 //    @FindBy (xpath = "//input[@id='twotabsearchtextbox']")
@@ -40,7 +41,7 @@ public class CloudPay extends BasePages{
     @FindBy ( xpath = "//span[contains(text(),'2020 Newest Dell Inspiron 15 3000 PC Laptop')]")
     WebElement dellNewest;
 
-    @FindBy ( xpath =  "(//span[@class='a-price-whole'])[1]")
+    @FindBy ( xpath =  "//div[@class='a-section a-spacing-none aok-align-center']")
     WebElement laptopPrice;
 
     @FindBy(xpath = "//input[@id='add-to-cart-button-ubb']")
@@ -73,42 +74,38 @@ public class CloudPay extends BasePages{
     }
     public void setRefineSearch(String choiceRam){
 
-        //span[contains(text(),'4 GB')]
-
-        List<WebElement> refSearch = driver.findElements(By.cssSelector(".a-icon.a-icon-checkbox"));
-        System.out.println(choiceRam);
-        System.out.println("No of checkbox "+ Integer.toString(refSearch.size()));
-        for ( WebElement searchOption:refSearch) {
-
-           // System.out.println("No of checkbox______________ "+ Integer.toString(refSearch.size()));
-
-         //     if(searchOption.equals(driver.findElement(By.linkText("4 GB"))))
-         //   if(searchOption.equals(By.xpath("//span[contains(text(),'4 GB')]"))){
-//            if(searchOption.equals(By.xpath("//li[@id='p_n_feature_thirty-three_browse-bin/23720420011']//i[@class='a-icon a-icon-checkbox']")))
-//            {
-//                searchOption.click();
-//            }
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("4 GB")));
-             driver.findElement(By.linkText("4 GB")).click();
-        }
-
-    }
-
-    public void selectDellNewest(){
-
-        String [] myDell = {    };
-
-        List <WebElement> myDellLaptop = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
-
-        System.out.println("No of items"+ Integer.toString(myDellLaptop.size()));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        System.out.println(" is 4 gb dispalyed"+driver.findElement(By.linkText(choiceRam)).isDisplayed());
+        driver.findElement(By.linkText(choiceRam)).isDisplayed();
+        js.executeScript("window.scrollBy(0,1000)");
+        driver.findElement(By.linkText(choiceRam)).click();
 
 
     }
+
+    public void selectDellNewest(String myDellLaptop) {
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+
+        System.out.println("2020 newest"+ driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed());
+
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(myDellLaptop)));
+        driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed();
+        js.executeScript("window.scrollBy(0,1000)");
+        driver.findElement(By.partialLinkText(myDellLaptop)).click();
+
+    }
+
+
 
     public String dellPrice(){
-        String price = Util.getText(laptopPrice);
-        return price;
+        String priceLaptop = Util.getText(laptopPrice);
+        System.out.println(priceLaptop);
+        return priceLaptop;
+
     }
 
     public void addToTheCart(){

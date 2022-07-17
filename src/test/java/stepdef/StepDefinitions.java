@@ -1,6 +1,7 @@
 package stepdef;
 
 
+import Utility.Util;
 import Webpages.CloudPay;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -31,14 +32,14 @@ public class StepDefinitions {
 
         cloudPay.setRefineSearch(choiceRam);
     }
-    @When("I pick 2020 Newest Dell Inspiron 15 3000 PC Laptop desired laptop")
-    public void i_pick_desired_laptop() {
-        cloudPay.selectDellNewest();
+    @And("I pick {string} Laptop desired laptop")
+    public void i_pick_desired_laptop(String myDellLaptop) {
+        cloudPay.selectDellNewest(myDellLaptop);
     }
 
     @Then("I should see the price {string} for Dell Inspiron PC Laptop")
     public void iShouldSeeThePriceForDellInspironPCLaptop(String price) {
-
+        Util.waitTime(4);
         Assert.assertEquals(cloudPay.dellPrice(),price);
     }
 
@@ -53,7 +54,6 @@ public class StepDefinitions {
         cloudPay.searchBoxMonitor();
         cloudPay.setMonitorSelect();
     }
-
 
 
 }
