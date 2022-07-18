@@ -7,8 +7,8 @@ Feature: Laptop search
     When  I search "Dell Laptops" from Home page
     And   I click "4 GB" to refine my search
     And   I pick "2020 Newest Dell Inspiron 15 3000 PC Laptop" Laptop desired laptop
-#    Then  I should see the price "$189.99" for Dell Inspiron PC Laptop
+    Then  I should see the price "$189.99" for Dell Inspiron PC Laptop
     And   I add Dell Inspiron PC Laptop to the basket
-#    And   I search monitor and add into basket
+    And   I search monitor and add into basket
 
 

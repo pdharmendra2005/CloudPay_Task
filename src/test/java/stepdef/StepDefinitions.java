@@ -35,23 +35,26 @@ public class StepDefinitions {
     }
     @And("I pick {string} Laptop desired laptop")
     public void i_pick_desired_laptop(String myDellLaptop) {
+        Util.waitTime(8);
         cloudPay.selectDellNewest(myDellLaptop);
     }
 
     @Then("I should see the price {string} for Dell Inspiron PC Laptop")
     public void iShouldSeeThePriceForDellInspironPCLaptop(String price) {
-        Util.waitTime(4);
+        Util.waitTime(8);
         Assert.assertEquals(cloudPay.dellPrice(),price);
     }
 
     @And("I add Dell Inspiron PC Laptop to the basket")
     public void iAddedDellInspironPCLaptopToTheBasket() {
+       Util.waitTime(8);
         cloudPay.addToTheCart();
 
     }
 
     @And("I search monitor and add into basket")
     public void iSearchMonitorAndAddIntoBasket() {
+        Util.waitTime(8);
         cloudPay.searchBoxMonitor();
         cloudPay.setMonitorSelect();
     }

@@ -29,9 +29,6 @@ public class CloudPay extends BasePages{
     @FindBy ( xpath = "//a[@id='nav-logo-sprites']")
     WebElement browseContent;
 
-//    @FindBy (xpath = "//input[@id='twotabsearchtextbox']")
-//    WebElement getSearchBox;
-
     @FindBy( xpath = "//input[@value='Go']")
     WebElement clickSearch;
 
@@ -41,17 +38,10 @@ public class CloudPay extends BasePages{
     @FindBy ( xpath = "//span[contains(text(),'2020 Newest Dell Inspiron 15 3000 PC Laptop')]")
     WebElement dellNewest;
 
-//    @FindBy ( xpath =  "//div[@class='a-section a-spacing-none aok-align-center']//span[@class='a-offscreen']")
-    @FindBy ( xpath =  "//span[@class='a-price aok-align-center reinventPricePriceToPayMargin priceToPay']//span[@class='a-offscreen'][normalize-space()='$189.99']")
-    WebElement laptopPrice;
-
-//    @FindBy(xpath = "//input[@id='add-to-cart-button-ubb']")
-//    WebElement addToCart;
-
     @FindBy(css = "input#add-to-cart-button-ubb.a-button-input")
     WebElement addToCart;
 
-    @FindBy(xpath = "//span[contains(text(),'KOORUI 24 Inch Computer Monitor')]")
+    @FindBy(xpath = "//*[@id=\"search\"]/div[1]/div[1]/div/span[3]/div[2]/div[2]/div/div/div/div/div/div/div/div[2]/div/div/div[1]/h2")
     WebElement monitorSelect;
 
     @FindBy(xpath = "//input[@id='add-to-cart-button']")
@@ -94,20 +84,20 @@ public class CloudPay extends BasePages{
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript("window.scrollBy(0,1000)");
+        Util.waitTime(5);
 
         driver.findElement(By.partialLinkText(myDellLaptop)).click();
 
     }
 
     public String dellPrice(){
-        String priceLaptop = Util.getText(laptopPrice);
-        System.out.println(priceLaptop);
-        return priceLaptop;
+
+        return String.valueOf(driver.findElement(By.xpath("//span[contains(text(),'$189.99')]")).getText());
 
     }
 
     public void addToTheCart(){
-        Util.waitTime(6);
+        Util.waitTime(10);
         Util.click(addToCart);
 
     }
