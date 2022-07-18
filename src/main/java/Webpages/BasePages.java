@@ -14,7 +14,6 @@ public class BasePages {
     public static WebDriverWait driverWait;
     public static String browserType = "chrome";
     public static String laptopType = "Dell Laptops";
-
     public static String monitorType = "monitor";
 
     public static void startBrowser(String browser){

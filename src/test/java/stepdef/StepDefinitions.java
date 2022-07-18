@@ -14,6 +14,7 @@ public class StepDefinitions {
     CloudPay cloudPay;
 
     public StepDefinitions(){
+
         cloudPay = new CloudPay();
     }
 

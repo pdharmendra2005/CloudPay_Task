@@ -41,14 +41,15 @@ public class CloudPay extends BasePages{
     @FindBy ( xpath = "//span[contains(text(),'2020 Newest Dell Inspiron 15 3000 PC Laptop')]")
     WebElement dellNewest;
 
-    @FindBy ( xpath =  "//div[@class='a-section a-spacing-none aok-align-center']")
+//    @FindBy ( xpath =  "//div[@class='a-section a-spacing-none aok-align-center']//span[@class='a-offscreen']")
+    @FindBy ( xpath =  "//span[@class='a-price aok-align-center reinventPricePriceToPayMargin priceToPay']//span[@class='a-offscreen'][normalize-space()='$189.99']")
     WebElement laptopPrice;
 
-    @FindBy(xpath = "//input[@id='add-to-cart-button-ubb']")
-    WebElement addToCart;
+//    @FindBy(xpath = "//input[@id='add-to-cart-button-ubb']")
+//    WebElement addToCart;
 
-//    @FindBy(css = "input#add-to-cart-button")
-//    WebElement addToCart; MIN
+    @FindBy(css = "input#add-to-cart-button-ubb.a-button-input")
+    WebElement addToCart;
 
     @FindBy(xpath = "//span[contains(text(),'KOORUI 24 Inch Computer Monitor')]")
     WebElement monitorSelect;
@@ -89,17 +90,6 @@ public class CloudPay extends BasePages{
 
     public void selectDellNewest(String myDellLaptop) {
 
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.scrollBy(0,1000)");
-//
-//        System.out.println("2020 newest"+ driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed());
-//
-//        WebDriverWait wait = new WebDriverWait(driver,10);
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(myDellLaptop)));
-//        driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed();
-//        js.executeScript("window.scrollBy(0,1000)");
-//        driver.findElement(By.partialLinkText(myDellLaptop)).click();
-
         System.out.println("link"+ driver.findElement(By.partialLinkText(myDellLaptop)).isDisplayed());
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -109,10 +99,6 @@ public class CloudPay extends BasePages{
 
     }
 
-
-
-
-
     public String dellPrice(){
         String priceLaptop = Util.getText(laptopPrice);
         System.out.println(priceLaptop);
@@ -121,7 +107,7 @@ public class CloudPay extends BasePages{
     }
 
     public void addToTheCart(){
-        Util.waitTime(2);
+        Util.waitTime(6);
         Util.click(addToCart);
 
     }

@@ -29,7 +29,7 @@ public class Util {
     }
 
     public static void click(WebElement element){
-        waitTime(100);
+        waitTime(20);
         element.isEnabled();
         element.click();
     }
